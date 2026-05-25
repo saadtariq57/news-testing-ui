@@ -9,7 +9,7 @@ export type PressRelease = {
   publishedAt: string;
 };
 
-export const PRESS_RELEASES_PAGE_SIZE = 20;
+export const PRESS_RELEASES_FETCH_LIMIT = 100;
 
 export type PressReleasesListParams = {
   limit?: number;

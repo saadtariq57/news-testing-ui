@@ -10,20 +10,8 @@ export const metadata: Metadata = {
 
 export const revalidate = 60;
 
-type PageProps = {
-  searchParams: Promise<{ limit?: string }>;
-};
+export default async function PressReleasesPage() {
+  const { items, error } = await loadPressReleasesListPage();
 
-export default async function PressReleasesPage({ searchParams }: PageProps) {
-  const sp = await searchParams;
-  const { items, hasMore, loadMoreHref, error } = await loadPressReleasesListPage(sp);
-
-  return (
-    <PressReleasesListView
-      items={items}
-      hasMore={hasMore}
-      loadMoreHref={loadMoreHref}
-      error={error}
-    />
-  );
+  return <PressReleasesListView items={items} error={error} />;
 }

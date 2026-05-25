@@ -52,17 +52,10 @@ function PressReleaseRow({ item }: { item: PressRelease }) {
 
 export type PressReleasesListViewProps = {
   items: PressRelease[];
-  hasMore: boolean;
-  loadMoreHref: string | null;
   error?: string | null;
 };
 
-export function PressReleasesListView({
-  items,
-  hasMore,
-  loadMoreHref,
-  error,
-}: PressReleasesListViewProps) {
+export function PressReleasesListView({ items, error }: PressReleasesListViewProps) {
   return (
     <div className="min-h-[calc(100vh-0)] bg-background text-foreground">
       <main className="px-6 py-8">
@@ -103,20 +96,11 @@ export function PressReleasesListView({
                 No press releases published yet.
               </div>
             ) : (
-              <>
-                <div className="divide-y divide-border/60">
-                  {items.map((item) => (
-                    <PressReleaseRow key={item.id} item={item} />
-                  ))}
-                </div>
-                {hasMore && loadMoreHref ? (
-                  <div className="p-4 border-t border-border/60 flex justify-center">
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href={loadMoreHref}>Load more</Link>
-                    </Button>
-                  </div>
-                ) : null}
-              </>
+              <div className="divide-y divide-border/60">
+                {items.map((item) => (
+                  <PressReleaseRow key={item.id} item={item} />
+                ))}
+              </div>
             )}
           </section>
         </div>
